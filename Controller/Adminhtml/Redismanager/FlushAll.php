@@ -10,11 +10,6 @@ namespace Tigren\RedisManager\Controller\Adminhtml\Redismanager;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 
-/**
- * Class FlushAll
- *
- * @package Tigren\RedisManager\Controller\Adminhtml\Redismanager
- */
 class FlushAll extends FlushAbstract
 {
     /**
@@ -23,7 +18,7 @@ class FlushAll extends FlushAbstract
     public function execute()
     {
         $flushThis = $this->getRequest()->getParam('server', null);
-        $flushAllResult = $this->_redisManagerHelper->flushAll($flushThis);
+        $flushAllResult = $this->redisManagerHelper->flushAll($flushThis);
 
         if (is_array($flushAllResult)) {
             $this->messageManager->addSuccessMessage('The Redis Services have been flushed.');
