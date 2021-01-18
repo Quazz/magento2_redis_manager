@@ -7,18 +7,13 @@
 
 namespace Tigren\RedisManager\Controller\Adminhtml\Redismanager;
 
-use Magento\Backend\App\Action;
+use Magento\Framework\App\ActionInterface;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 
-/**
- * Class Index
- *
- * @package Tigren\RedisManager\Controller\Adminhtml\Redismanager
- */
-class Index extends Action
+class Index implements ActionInterface
 {
     /**
      * @var PageFactory
@@ -28,14 +23,11 @@ class Index extends Action
     /**
      * Index constructor.
      *
-     * @param Action\Context $context
      * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        Action\Context $context,
         PageFactory $resultPageFactory
     ) {
-        parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
 
