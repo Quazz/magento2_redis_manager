@@ -10,7 +10,7 @@ namespace Tigren\RedisManager\Controller\Adminhtml\Redismanager;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Message\ManagerInterface;
 use Magento\Framework\App\Response\RedirectInterface;
-use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\App\RequestInterface;
 use Tigren\RedisManager\Helper\Data;
 
 abstract class FlushAbstract implements ActionInterface
@@ -35,11 +35,11 @@ abstract class FlushAbstract implements ActionInterface
         Data $redisManagerHelper,
         ManagerInterface $messageManager,
         RedirectInterface $redirect,
-        ResponseInterface $response
+        RequestInterface $request
     ) {
         $this->messageManager = $messageManager;
         $this->redisManagerHelper = $redisManagerHelper;
         $this->redirect = $redirect;
-        $this->response = $response;
+        $this->request = $request;
     }
 }
