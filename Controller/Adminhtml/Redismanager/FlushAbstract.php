@@ -7,16 +7,11 @@
 
 namespace Tigren\RedisManager\Controller\Adminhtml\Redismanager;
 
-use Magento\Backend\App\Action;
+use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Message\ManagerInterface;
 use Tigren\RedisManager\Helper\Data;
 
-/**
- * Class FlushAbstract
- *
- * @package Tigren\RedisManager\Controller\Adminhtml\Redismanager
- */
-abstract class FlushAbstract extends Action
+abstract class FlushAbstract implements ActionInterface
 {
     /**
      * @var ManagerInterface
@@ -26,20 +21,19 @@ abstract class FlushAbstract extends Action
     /**
      * @var Data
      */
-    protected $_redisManagerHelper;
+    protected $redisManagerHelper;
 
     /**
      * FlushAll constructor.
      *
-     * @param Action\Context $context
+     * @param MessageManager $messageManager
      * @param Data $redisManagerHelper
      */
     public function __construct(
-        Action\Context $context,
-        Data $redisManagerHelper
+        Data $redisManagerHelper,
+        ManagerInterface $messageManager
     ) {
-        parent::__construct($context);
-        $this->messageManager = $context->getMessageManager();
-        $this->_redisManagerHelper = $redisManagerHelper;
+        $this->messageManager = $messageManager;
+        $this->redisManagerHelper = $redisManagerHelper;
     }
 }
