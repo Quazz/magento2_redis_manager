@@ -17,7 +17,7 @@ class FlushAll extends FlushAbstract
      */
     public function execute()
     {
-        $flushThis = $this->getRequest()->getParam('server', null);
+        $flushThis = $this->request->getParam('server', null);
         $flushAllResult = $this->redisManagerHelper->flushAll($flushThis);
 
         if (is_array($flushAllResult)) {
@@ -26,6 +26,6 @@ class FlushAll extends FlushAbstract
             $this->messageManager->addSuccessMessage('The Redis Services were not flushed.');
         }
 
-        return $this->_redirect('redismanager/redismanager');
+        return $this->redirect->redirect('redismanager/redismanager');
     }
 }
