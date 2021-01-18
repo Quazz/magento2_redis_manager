@@ -45,7 +45,7 @@ class FlushByKey extends FlushAbstract
             )
         );
 
-        return $this->redirect->redirect('redismanager/redismanager');
+        return $this->resultRedirectFactory->create()->setPath('redismanager/redismanager', ['_current' => true]);
     }
 
     /**
