@@ -9,6 +9,7 @@ namespace Tigren\RedisManager\Controller\Adminhtml\Redismanager;
 
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Message\ManagerInterface;
+use Magento\Framework\App\Response\RedirectInterface;
 use Tigren\RedisManager\Helper\Data;
 
 abstract class FlushAbstract implements ActionInterface
@@ -31,9 +32,11 @@ abstract class FlushAbstract implements ActionInterface
      */
     public function __construct(
         Data $redisManagerHelper,
-        ManagerInterface $messageManager
+        ManagerInterface $messageManager,
+        RedirectInterface $redirect
     ) {
         $this->messageManager = $messageManager;
         $this->redisManagerHelper = $redisManagerHelper;
+        $this->redirect = $redirect;
     }
 }
