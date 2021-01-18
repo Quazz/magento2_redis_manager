@@ -23,32 +23,12 @@ use Tigren\RedisManager\Model\Redis;
 use Zend_Cache;
 use Zend_Cache_Exception;
 
-/**
- * Class Data
- *
- * @package Tigren\RedisManager\Helper
- */
 class Data extends AbstractHelper
 {
-    /**
-     *
-     */
-    const DEFAULT_MISSING_STRING = 'N/A';
-
-    /**
-     *
-     */
-    const XML_PATH_AUTO_DETECT_REDIS_SERVICES = 'redismanager/setting/auto_detect';
-
-    /**
-     *
-     */
-    const XML_PATH_SYNC_FLUSH = 'redismanager/setting/syncflush';
-
-    /**
-     *
-     */
-    const XML_PATH_MANUAL_CONFIG = 'redismanager/setting/manual_config';
+    public const DEFAULT_MISSING_STRING = 'N/A';
+    public const XML_PATH_AUTO_DETECT_REDIS_SERVICES = 'redismanager/setting/auto_detect';
+    public const XML_PATH_SYNC_FLUSH = 'redismanager/setting/syncflush';
+    public const XML_PATH_MANUAL_CONFIG = 'redismanager/setting/manual_config';
 
     /**
      * @var StoreManagerInterface
@@ -135,7 +115,7 @@ class Data extends AbstractHelper
      */
     public function getSyncFlush()
     {
-        return (bool)$this->scopeConfig->getValue(
+        return (bool) $this->scopeConfig->getValue(
             self::XML_PATH_SYNC_FLUSH,
             ScopeInterface::SCOPE_STORE
         );
@@ -154,7 +134,7 @@ class Data extends AbstractHelper
         foreach ($this->getServices() as $service) {
             $serviceMatch = $service['server'] . ':' . $service['port'];
             if (in_array($serviceMatch, $flushed)
-                || (!is_null($flushThis) && $flushThis != $serviceMatch)
+                || ($flushThis !== null && $flushThis != $serviceMatch)
             ) {
                 continue;
             }
@@ -213,7 +193,7 @@ class Data extends AbstractHelper
      */
     public function getAutoDetectRedisServices()
     {
-        return (bool)$this->scopeConfig->getValue(
+        return (bool) $this->scopeConfig->getValue(
             self::XML_PATH_AUTO_DETECT_REDIS_SERVICES,
             ScopeInterface::SCOPE_STORE
         );
