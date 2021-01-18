@@ -26,6 +26,6 @@ class FlushAll extends FlushAbstract
             $this->messageManager->addSuccessMessage('The Redis Services were not flushed.');
         }
 
-        return $this->redirect->redirect('redismanager/redismanager');
+        return $this->resultRedirectFactory->create()->setPath('redismanager/redismanager', ['_current' => true]);
     }
 }
