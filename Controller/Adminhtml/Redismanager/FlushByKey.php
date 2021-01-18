@@ -17,7 +17,7 @@ class FlushByKey extends FlushAbstract
      */
     public function execute()
     {
-        $keys = $this->getRequest()->getPost('redisKeys');
+        $keys = $this->request->getPost('redisKeys');
         $clearCount = 0;
 
         if ($keys) {
