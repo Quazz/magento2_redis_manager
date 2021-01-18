@@ -10,11 +10,6 @@ namespace Tigren\RedisManager\Controller\Adminhtml\Redismanager;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 
-/**
- * Class FlushByKey
- *
- * @package Tigren\RedisManager\Controller\Adminhtml\Redismanager
- */
 class FlushByKey extends FlushAbstract
 {
     /**
@@ -28,9 +23,9 @@ class FlushByKey extends FlushAbstract
         if ($keys) {
             $keys = explode("\n", $keys);
             $keys = array_map([$this, '_prepareKey'], $keys);
-            $services = $this->_redisManagerHelper->getServices();
+            $services = $this->redisManagerHelper->getServices();
             foreach ($services as $service) {
-                $redis = $this->_redisManagerHelper->getRedisInstance($service)->getRedis();
+                $redis = $this->redisManagerHelper->getRedisInstance($service)->getRedis();
                 $matched = [];
                 foreach ($keys as $key) {
                     if ($key !== false) {
@@ -50,7 +45,7 @@ class FlushByKey extends FlushAbstract
             )
         );
 
-        return $this->_redirect('redismanager/redismanager');
+        return $this->redirect->redirect('redismanager/redismanager');
     }
 
     /**
